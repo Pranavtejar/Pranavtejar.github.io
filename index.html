@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Business Card</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-size: cover;
+            background-repeat: repeat;
+            background-image: url('https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pinterest.com%2Fpin%2Fthe-great-wave-off-kanagawa-wallpaper--801992646153459487%2F&psig=AOvVaw04D5axA1qL8j06kYzZyLZG&ust=1731855902199000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCOi-opSQ4YkDFQAAAAAdAAAAABAI');
+            font-family: 'Arial', sans-serif;
+            min-height: 100%;
+            background: #000;
+            
+        }
+
+        .card {
+            width: 350px;
+            padding: 20px;
+            background: rgba(30, 30, 30, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+            transition: transform 0.3s;
+            color: #fff;
+            text-align: center;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+            border: 3px solid #ff0000;
+            object-fit: cover;
+        }
+
+        .card h2 {
+            margin: 0;
+            font-size: 24px;
+            color: #fff;
+        }
+
+        .card p {
+            margin: 5px 0;
+            color: #bbb;
+        }
+
+        .card a {
+            display: inline-block;
+            margin-top: 10px;
+            margin-right: 10px;
+            padding: 10px 15px;
+            background-color: #ff0000;
+            color: #000;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .card a:hover {
+            background-color: #b30000;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            color: #ff0000;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+
+        .social-links a img {
+            width: 25px;
+            height: 25px;
+            margin-right: 5px;
+        }
+
+        .social-links a:hover {
+            color: #b30000;
+        }
+        
+        font {
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <img class="profile-img" src="https://wallpapers.com/images/hd/anime-symbols-berserk-brand-of-sacrifice-black-and-red-lanz0yf43vfdxr1c.jpg" alt="Profile Image">
+        <h2>pranav</h2>
+        <p>I like c++, python and ice cream</p>
+        <div class="social-links">
+            <a href="https://open.spotify.com/user/316yf6egiiop5ezctcegassjxknm" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg" alt="Spotify Logo"><font>spotify</font>
+            </a>
+            <a href="https://www.snapchat.com/add/tate_00016" target="_blank">
+                <img src="https://www.logo.wine/a/logo/Snapchat/Snapchat-Logo.wine.svg" alt="Snapchat Logo" width="300" height="400"><font>snapchat</font>
+            </a>
+        </div>
+        <a href="mailto:pranavtejar72@gmail.com">Contact Me</a>
+    </div>
+</body>
+</html>
