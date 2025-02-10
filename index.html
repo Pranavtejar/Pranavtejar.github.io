@@ -14,6 +14,13 @@
             background: linear-gradient(135deg, #000000, #b30000);
             font-family: 'Arial', sans-serif;
             color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        body.light-mode {
+            background: linear-gradient(135deg, #ffffff, #ffcccc);
+            color: #000;
         }
 
         .card {
@@ -22,8 +29,13 @@
             background: rgba(30, 30, 30, 0.85);
             border-radius: 20px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
-            transition: transform 0.3s;
+            transition: transform 0.3s, background 0.5s ease;
             text-align: center;
+            z-index: 10;
+        }
+
+        body.light-mode .card {
+            background: rgba(255, 255, 255, 0.85);
         }
 
         .card:hover {
@@ -37,17 +49,49 @@
             margin-bottom: 20px;
             border: 3px solid #ff0000;
             object-fit: cover;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.1);
+            border-color: #b30000;
         }
 
         .card h2 {
             margin: 0;
             font-size: 30px;
+            opacity: 0;
+            animation: fadeIn 3s forwards, blink-caret 0.75s step-end infinite;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        body.light-mode .card h2 {
+            animation: fadeIn 3s forwards, blink-caret-light 0.75s step-end infinite;
+        }
+
+        @keyframes blink-caret-light {
+            from, to { border-color: transparent; }
+            50% { border-color: #000; }
         }
 
         .card p {
             margin: 10px 0;
             color: #bbb;
             font-size: 18px;
+        }
+
+        body.light-mode .card p {
+            color: #666;
         }
 
         .card a {
@@ -78,8 +122,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 60px; /* Reduced width for image button size */
-            height: 60px; /* Ensured buttons are square and fit */
+            width: 60px;
+            height: 60px;
         }
 
         .social-links a img {
@@ -91,19 +135,60 @@
         }
 
         .social-links a:hover img {
-            transform: scale(1.1); /* Slight zoom effect on hover */
+            transform: scale(1.1);
         }
 
-        font {
-            color: #000;
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            padding: 12px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        .theme-toggle img {
+            width: 30px;
+            height: 30px;
+        }
+
+        .emoji {
+            position: absolute;
+            font-size: 30px; /* Size of the emoji */
+            opacity: 0;
+            animation: pour 5s infinite linear;
+        }
+
+        @keyframes pour {
+            0% {
+                opacity: 1;
+                transform: translateY(-100px);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(100vh);
+            }
         }
     </style>
 </head>
 <body>
+    <button class="theme-toggle" onclick="toggleTheme()">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+            <path d="M12 3C7.03 3 3 7.03 3 12s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm0 16c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7zm0-12c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5z"/>
+        </svg>
+    </button>
+
     <div class="card">
         <img class="profile-img" src="https://wallpapers.com/images/hd/anime-symbols-berserk-brand-of-sacrifice-black-and-red-lanz0yf43vfdxr1c.jpg" alt="Profile Image">
         <h2>Pranav</h2>
-        <p>I like C++, Python, and Ice Cream</p>
+        <p>i love go,python and icecream(js is shit)</p>
         <div class="social-links">
             <a href="https://open.spotify.com/user/316yf6egiiop5ezctcegassjxknm" target="_blank">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg" alt="Spotify Logo">
@@ -120,5 +205,34 @@
         </div>
         <a href="mailto:pranavtejar72@gmail.com">Contact Me</a>
     </div>
+
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            body.classList.toggle('light-mode');
+            const isLightMode = body.classList.contains('light-mode');
+            localStorage.setItem('theme', isLightMode ? 'light' : 'dark');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'light') {
+                document.body.classList.add('light-mode');
+            }
+        });
+
+        function createPouringEmoji() {
+            const emoji = document.createElement('div');
+            emoji.classList.add('emoji');
+            emoji.textContent = '😋'; // The :yum: emoji
+            document.body.appendChild(emoji);
+            const randomLeft = Math.random() * 100;
+            const randomDelay = Math.random() * 2;
+            emoji.style.left = `${randomLeft}%`;
+            emoji.style.animationDelay = `${randomDelay}s`;
+        }
+
+        setInterval(createPouringEmoji, 700); // Pouring emoji every 700ms
+    </script>
 </body>
 </html>
