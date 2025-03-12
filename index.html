@@ -161,7 +161,7 @@
 
         .emoji {
             position: absolute;
-            font-size: 30px; /* Size of the emoji */
+            font-size: 50px; /* Size of the emoji */
             opacity: 0;
             animation: pour 5s infinite linear;
         }
@@ -224,7 +224,7 @@
         function createPouringEmoji() {
             const emoji = document.createElement('div');
             emoji.classList.add('emoji');
-            emoji.textContent = '😋'; // The :yum: emoji
+            emoji.textContent = '♱'; // The :yum: emoji
             document.body.appendChild(emoji);
             const randomLeft = Math.random() * 100;
             const randomDelay = Math.random() * 2;
